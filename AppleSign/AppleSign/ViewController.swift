@@ -75,11 +75,13 @@ extension ViewController: ASAuthorizationControllerDelegate {
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
-        
+            let authorizationCode = appleIDCredential.authorizationCode!
+            let identityToken = appleIDCredential.identityToken!
+            
             // 将userIdentifier保存到钥匙串中
             self.saveUserInKeychain(userIdentifier)
-            print("userIdentifier: \(userIdentifier) \n fullName: \(String(describing: fullName)) \n email: \(String(describing: email))    \(appleIDCredential)")
-            
+            print("userIdentifier: \(userIdentifier) \n fullName: \(String(describing: fullName)) \n email: \(String(describing: email))  authorizationCode: \(String(describing: String(data: authorizationCode, encoding: String.Encoding.utf8)))  identityToken: \(String(describing: String(data: identityToken, encoding: String.Encoding.utf8))) \(appleIDCredential)")
+
         case let passwordCredential as ASPasswordCredential:
         
             // 密码凭证的用户唯一表示
